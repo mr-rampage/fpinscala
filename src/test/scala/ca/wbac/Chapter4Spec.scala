@@ -2,8 +2,6 @@ package ca.wbac
 
 import org.scalatest.FunSpec
 
-import scala.collection.immutable.Stream.Empty
-
 class Chapter4Spec extends FunSpec {
 
   describe("Exercise 4.1") {
@@ -37,7 +35,7 @@ class Chapter4Spec extends FunSpec {
       mean(xs) flatMap (avg => mean(xs map (x => math pow(x - avg, 2))))
 
     def mean(xs: Seq[Double]): Option[Double] = xs match {
-      case Empty => None
+      case scala.collection.immutable.Stream.Empty => None
       case _ => Some(xs.sum / xs.size)
     }
 
