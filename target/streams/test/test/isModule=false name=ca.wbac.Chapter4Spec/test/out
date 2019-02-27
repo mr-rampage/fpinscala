@@ -1,7 +1,0 @@
-[info] Chapter4Spec:
-[info] Exercise 4.1
-[info] - should map
-[info] - should return the value
-[info] - should return the option
-[info] - should filter the option
-[info] - should flatMap the option
