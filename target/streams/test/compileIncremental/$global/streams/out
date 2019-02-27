@@ -1,0 +1,14 @@
+[debug] Full compilation, no sources in previous analysis.
+[debug] All sources are invalidated.
+[debug] Recompiling all 2 sources: invalidated sources (2) exceeded 50.0% of all sources
+[info] Compiling 2 Scala sources to /home/vagrant/IdeaProjects/scala-course/target/scala-2.12/test-classes ...
+[debug] Getting org.scala-sbt:compiler-bridge_2.12:1.2.5:compile for Scala 2.12.8
+[debug] Getting org.scala-sbt:compiler-bridge_2.12:1.2.5:compile for Scala 2.12.8
+[debug] [zinc] Running cached compiler 399d48e6 for Scala compiler version 2.12.8
+[debug] [zinc] The Scala compiler is invoked with:
+[debug] 	-bootclasspath
+[debug] 	/usr/local/openjdk8/jre/lib/resources.jar:/usr/local/openjdk8/jre/lib/rt.jar:/usr/local/openjdk8/jre/lib/sunrsasign.jar:/usr/local/openjdk8/jre/lib/jsse.jar:/usr/local/openjdk8/jre/lib/jce.jar:/usr/local/openjdk8/jre/lib/charsets.jar:/usr/local/openjdk8/jre/lib/jfr.jar:/usr/local/openjdk8/jre/classes:/home/vagrant/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.8.jar
+[debug] 	-classpath
+[debug] 	/home/vagrant/IdeaProjects/scala-course/target/scala-2.12/test-classes:/home/vagrant/IdeaProjects/scala-course/target/scala-2.12/classes:/home/vagrant/.ivy2/cache/org.scalatest/scalatest_2.12/bundles/scalatest_2.12-3.0.5.jar:/home/vagrant/.ivy2/cache/org.scalactic/scalactic_2.12/bundles/scalactic_2.12-3.0.5.jar:/home/vagrant/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.12.8.jar:/home/vagrant/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.6.jar
+[debug] Scala compilation took 0.953887994 s
+[info] Done compiling.
