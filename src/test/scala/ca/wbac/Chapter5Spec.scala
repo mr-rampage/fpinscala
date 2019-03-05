@@ -1,6 +1,6 @@
 package ca.wbac
 
-import ca.wbac.Stream.{cons, empty}
+import ca.wbac.Stream._
 import org.scalatest.FunSpec
 
 class Chapter5Spec extends FunSpec {
@@ -59,6 +59,35 @@ class Chapter5Spec extends FunSpec {
 
     it("should flatmap a value") {
       assert(cons(cons(5, cons(4, cons(3, empty))), empty).flatMap(identity).toList == List(5, 4, 3))
+    }
+  }
+
+
+  describe("Exercise 5.8: constant") {
+    it("should create an infinite stream") {
+      assert(constant(5).take(5).toList == List(5, 5, 5, 5, 5))
+    }
+  }
+
+  describe("Exercise 5.9: iterator") {
+    it("should create a sequential list of numbers") {
+      assert(from(5).take(3).toList == List(5, 6, 7))
+    }
+  }
+
+  describe("Exercise 5.10: fibonacci") {
+    it("should create the fibonacci sequence") {
+      assert(fibs().take(7).toList == List(0, 1, 1, 2, 3, 5, 8))
+    }
+  }
+
+  describe("Exercise 5.13: zipWith, zipAll") {
+    it("should zip two streams") {
+      assert(constant(5).zipWith(constant(1))((a, b) => a + b).take(5).toList == List(6, 6, 6, 6, 6))
+    }
+
+    it("should zip all streams") {
+      assert(constant(5).zipAll(constant(1).take(2))((a, b) => a + b).take(3).toList == List(6, 6, 5))
     }
   }
 
