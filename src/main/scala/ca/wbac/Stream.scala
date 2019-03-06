@@ -76,11 +76,12 @@ sealed trait Stream[+A] {
 
   def flatMap[B >: A](p: A => Stream[B]): Stream[B] = foldRight(empty[B])((a, b) => p(a).append(b))
 
-  def startsWith[B >: A](s: Stream[B]): Boolean = this.zipAll(s)((a, b) => (a, b) match {
-    case (Some(x), Some(y)) => x == y
-    case (Some(_), None) => true
-    case _ => false
-  }).forAll(_ == true)
+  def startsWith[B >: A](s: Stream[B]): Boolean = this.zipAll(s)((_, _)).takeWhile(_._2 != None).forAll(x => x._1.equals(x._2))
+
+  def tails: Stream[Stream[A]] = unfold(this)((x: Stream[A]) => x match {
+    case Empty => None
+    case s => Some((s, s drop 1))
+  }).append(Stream(empty))
 }
 
 case object Empty extends Stream[Nothing]

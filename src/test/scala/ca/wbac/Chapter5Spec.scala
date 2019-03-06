@@ -115,4 +115,11 @@ class Chapter5Spec extends FunSpec {
     }
   }
 
+  describe("Exercise 5.15: tails") {
+    it("should return a Stream of suffix") {
+      val source = Stream(1, 2)
+      assert(source.tails.toList == List(source, source drop 1, Empty))
+    }
+  }
+
 }
