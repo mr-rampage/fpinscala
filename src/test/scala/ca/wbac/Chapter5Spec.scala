@@ -86,8 +86,22 @@ class Chapter5Spec extends FunSpec {
       assert(constant(5).zipWith(constant(1))((a, b) => a + b).take(5).toList == List(6, 6, 6, 6, 6))
     }
 
-    it("should zip all streams") {
-      assert(constant(5).zipAll(constant(1).take(2))((a, b) => a + b).take(3).toList == List(6, 6, 5))
+    it("should zip all streams if first stream is longer") {
+      assert(constant(5).zipAll(constant(1).take(2))((a, b) => (a, b) match {
+        case (Some(x), Some(y)) => x + y
+        case (Some(x), None) => x
+        case (None, Some(y)) => y
+        case (None, None) => 0
+      }).take(5).toList == List(6, 6, 5, 5, 5))
+    }
+
+    it("should zip all streams if second stream is longer") {
+      assert(constant(5).take(2).zipAll(constant(1).take(10))((a, b) => (a, b) match {
+        case (Some(x), Some(y)) => x + y
+        case (Some(x), None) => x
+        case (None, Some(y)) => y
+        case (None, None) => 0
+      }).take(5).toList == List(6, 6, 1, 1, 1))
     }
   }
 
