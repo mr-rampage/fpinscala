@@ -13,6 +13,7 @@ sealed trait Stream[+A] {
     case (Cons(head, rest), n) if n == 1 => Some(head(), (empty, 0))
     case _ => None
   }
+
   /*
   def take(n: Int): Stream[A] = this match {
     case Cons(head, rest) if n > 1 => cons(head(), rest().take(n - 1))
@@ -74,6 +75,12 @@ sealed trait Stream[+A] {
   def append[B >: A](a: => Stream[B]): Stream[B] = foldRight(a)((a, b) => cons(a, b))
 
   def flatMap[B >: A](p: A => Stream[B]): Stream[B] = foldRight(empty[B])((a, b) => p(a).append(b))
+
+  def startsWith[B >: A](s: Stream[B]): Boolean = this.zipAll(s)((a, b) => (a, b) match {
+    case (Some(x), Some(y)) => x == y
+    case (Some(_), None) => true
+    case _ => false
+  }).forAll(_ == true)
 }
 
 case object Empty extends Stream[Nothing]
@@ -89,7 +96,7 @@ object Stream {
 
   def constant[A](a: A): Stream[A] = unfold(a)(x => Some((x, x)))
 
-  def from(n: Int): Stream[Int] = unfold(n)(x => Some((x, x+1)))
+  def from(n: Int): Stream[Int] = unfold(n)(x => Some((x, x + 1)))
 
   //def fibs(p: Int = 0, n: Int = 1): Stream[Int] = cons(p, fibs(n, p + n))
   def fibs(): Stream[Int] = unfold((0, 1)) {
